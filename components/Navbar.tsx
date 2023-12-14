@@ -1,5 +1,5 @@
 "use client";
-
+import MobileSideBar from "./Mobile-sidebar";
 import { cn } from "@/lib/utils";
 import { UserButton } from "@clerk/nextjs";
 import { Menu, Sparkles } from "lucide-react";
@@ -11,9 +11,9 @@ const font = Poppins({ weight: "600", subsets: ["latin"] });
 
 export default function Navbar() {
   return (
-    <div className=" w-full fixed z-50 flex justify-between items-center py-2 px-4 border-b border-primary/10 bg-secondary ">
+    <div className="h-16 w-full fixed z-50 flex justify-between items-center py-2 px-4 border-b border-primary/10 bg-secondary ">
       <div className="flex items-center">
-        <Menu className="block md:hidden" />
+        <MobileSideBar />
         <Link href="/">
           <h1
             className={cn(
