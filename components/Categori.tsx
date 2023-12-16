@@ -3,10 +3,11 @@
 import { cn } from "@/lib/utils";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
 
-export default function Category({ name }: { name: string }) {
+export default function Category({ name, id }: { name: string; id: string }) {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
+  const categoryId = searchParams.get("categoriId");
 
   const handleClick = (name: string) => {
     const params = new URLSearchParams(searchParams);
@@ -18,8 +19,12 @@ export default function Category({ name }: { name: string }) {
     } else {
       params.delete("categoriId");
     }
+    console.log(1);
+    console.log(id);
 
     replace(`${pathname}?${params.toString()}`);
+
+    console.log("id = ", name, "categoriID", categoryId);
   };
 
   const handleButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -28,12 +33,12 @@ export default function Category({ name }: { name: string }) {
       handleClick(buttonName);
     }
   };
-
   return (
     <button
       name={name}
       onClick={handleButtonClick}
-      className={cn(`
+      className={cn(
+        `
         flex 
         items-center
         text-center
@@ -47,7 +52,12 @@ export default function Category({ name }: { name: string }) {
         bg-slate-500
         hover:opacity-75
         transition
-      `)}
+      `,
+        encodeURIComponent(name) ===
+          encodeURIComponent(searchParams.get("categoriId") as string)
+          ? "bg-slate-700"
+          : "  bg-slate-500"
+      )}
     >
       {name}
     </button>

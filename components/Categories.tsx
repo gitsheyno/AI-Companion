@@ -6,6 +6,7 @@ export default async function Categories(query: { query: string }) {
 
   return (
     <div className="w-full overflow-x-auto space-x-2 flex p-1">
+      {/* TODO : Make new Component for newest Component with reset URL Functionality */}
       <button
         className={cn(`
                             flex 
@@ -26,7 +27,7 @@ export default async function Categories(query: { query: string }) {
         Newest
       </button>
       {categories.map((item) => (
-        <Categori key={item.id} name={item.name} />
+        <Categori key={item.id} name={item.name} id={item.id} />
       ))}
     </div>
   );
